@@ -6,7 +6,7 @@ class App extends Component {
     super(props)
     this.state = {
       person: {
-        name:'John',
+        name:undefined,
         age:'25',
         hometown:'Antwerp',
         favourites: {
@@ -36,15 +36,18 @@ class App extends Component {
     console.log('this.state.person: ',this.state.person)
 
     // Destructuring for easy acces
-    let { name, age, hometown, favourites: {color, food} } = this.state.person 
+    let { age, hometown, favourites: {color, food} } = this.state.person 
+    let { name = "default" } = this.state.person
 
     console.log('Easy acces examples',{name},{age})
 
     return (
       <div className="App">
+        <h4>From state:</h4>
         <p>My name is {this.state.person.name}, I'm from {this.state.person.hometown} and am {this.state.person.age} years old. You can wake me up for {this.state.person.favourites.food} and paint my walls {this.state.person.favourites.color}</p>
+        <h4>From destructuring:</h4>
         <p>My name is {name}, I'm from {hometown} and am {age} years old. You can wake me up for {food} and paint my walls {color}</p> 
-        <button onClick={() => {this.changeState()}}>Click it!</button>
+        <button onClick={() => {this.changeState()}}>setState</button>
       </div>
     )
   }
